@@ -20,3 +20,6 @@ $(DIRS):
 
 list:
 	cat fa18*/README.yml 
+
+clean:
+	rm -rf fa18*
