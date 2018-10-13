@@ -5,7 +5,11 @@
 | Indinana University, Example University
 | hid: fa18-523-000, fa18-523-001
 
-> Keywords: Cloud, Example
+---
+
+| *Keywords:* Cloud, Example
+
+---
 
 ## Abstract
 
