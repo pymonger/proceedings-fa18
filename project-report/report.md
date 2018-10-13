@@ -4,7 +4,11 @@
 | laszewski@gmail.com, zwei@example.edu
 | Indinana University, Example University
 | hid: fa18-523-000, fa18-523-001
-| link: [:cloud:](https://github.com/cloudmesh-community/proceedings-fa18/blob/master/project-report/report.md)
+| github: [:cloud:](https://github.com/cloudmesh-community/proceedings-fa18/blob/master/project-report/report.md)
+| code: [:cloud:](https://github.com/cloudmesh-community/proceedings-fa18/blob/master/project-code)
+
+> If you do a project report only without any code, remove the line
+> with the code url link. Remove this line also ;-)
 
 ---
 
