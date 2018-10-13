@@ -31,6 +31,7 @@ FORMAT=--toc --number-sections
 BIB=--bibliography all.bib
 FONTS=--epub-embed-font='fonts/*.ttf'
 RESOURCE=--resource-path=$(IMAGE_DIRS)
+CSL=--csl=template/ieee-with-url.csl
 
 projects: bib
 	mkdir -p dest
