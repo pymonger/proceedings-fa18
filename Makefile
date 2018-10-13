@@ -34,7 +34,7 @@ list:
 	python list.py  > list.md
 
 
-projects: bib
+projects: 
 	mkdir -p dest
 	echo > dest/projects.md
 	cat project-report/report.md >> dest/projects.md
@@ -46,9 +46,26 @@ projects: bib
 	cd dest; iconv -t utf-8 projects.md > all.md
 	cd dest; echo "# Refernces\n\n" >> all.md
 	cp -r template dest
-	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME).epub ../metadata.txt all.md
-	cp dest/$(FILENAME).epub . 
+	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME)-projects.epub ../metadata.txt all.md
+	cp dest/$(FILENAME)-projects.epub . 
 #	cd dest; pandoc $(RESOURCE) --number-sections -V secnumdepth:5 --pdf-engine=xelatex -f markdown+smart --toc --epub-embed-font='fonts/*.ttf' --template=../template/eisvogel/eisvogel.latex --listings --bibliography all.bib -o $(FILENAME).pdf metadata.txt $(INDEX)
+	echo "open $(FILENAME)-projects.epub"
+
+papers: 
+	mkdir -p dest
+	echo > dest/papers.md
+	cat project-report/report.md >> dest/papers.md
+	for i in $(DIRS); do \
+		cat $$i/paper/paper.md >> dest/papers.md ; \
+		echo "\n" >> dest/papers.md ; \
+	done ;
+	cd dest; iconv -t utf-8 papers.md > all.md
+	cd dest; echo "# Refernces\n\n" >> all.md
+	cp -r template dest
+	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME)-papers.epub ../metadata.txt all.md
+	cp dest/$(FILENAME)-papers.epub . 
+#	cd dest; pandoc $(RESOURCE) --number-sections -V secnumdepth:5 --pdf-engine=xelatex -f markdown+smart --toc --epub-embed-font='fonts/*.ttf' --template=../template/eisvogel/eisvogel.latex --listings --bibliography all.bib -o $(FILENAME).pdf metadata.txt $(INDEX)
+
 
 push:
 	-for i in $(DIRS); do \
@@ -57,16 +74,35 @@ push:
 	done ;
 
 
-bib:
+bib-projects:
 	mkdir -p bib
+	rm -f */*.blg
 	cp project-report/*.bib bib
 	-for i in $(DIRS); do \
-		cp $$i/paper/references.bib bib/refernces-$$i.bib ; \
+		biber -q --tool -V $$i/report.bib >> biber.log ; \
+		biber -q --tool -V $$i/refernces.bib >> biber.log ; \
+		cp $$i/project-paper/references.bib bib/refernces-$$i.bib ; \
 		cp $$i/project-paper/report.bib bib/report-$$i.bib ; \
 	done ;
 	mkdir -p dest
 	cat bib/*.bib > dest/all.bib
+	rm -f */*.blg
 
+bib-papers:
+	mkdir -p bib
+	cp project-report/*.bib bib
+	echo > bibr.log
+	-for i in $(DIRS); do \
+		biber -q --tool -V $$i/paper/paper.bib >> biber.log ; \
+		cp $$i/paper/paper.bib bib/refernces-$$i.bib ; \
+	done ;
+	mkdir -p dest
+	cat bib/*.bib > dest/all.bib
+
+biblog:
+	cat biber.log | fgrep "does not parse correctly"
+
+#	cat biber.log | fgrep -v INFO | fgrep -v "Cannot find"
 
 
 
@@ -74,4 +110,7 @@ bib:
 #	done ;
 
 clean:
+	rm -rf dest bib
+
+real-clean:
 	rm -rf fa18*
