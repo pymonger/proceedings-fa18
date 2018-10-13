@@ -54,7 +54,7 @@ projects:
 papers: 
 	mkdir -p dest
 	echo > dest/papers.md
-	cat project-report/report.md >> dest/papers.md
+	cat paper/paper.md >> dest/papers.md
 	for i in $(DIRS); do \
 		cat $$i/paper/paper.md >> dest/papers.md ; \
 		echo "\n" >> dest/papers.md ; \
@@ -62,7 +62,7 @@ papers:
 	cd dest; iconv -t utf-8 papers.md > all.md
 	cd dest; echo "# Refernces\n\n" >> all.md
 	cp -r template dest
-	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME)-papers.epub ../metadata.txt all.md
+	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME)-papers.epub ../metadata-papers.txt all.md
 	cp dest/$(FILENAME)-papers.epub . 
 #	cd dest; pandoc $(RESOURCE) --number-sections -V secnumdepth:5 --pdf-engine=xelatex -f markdown+smart --toc --epub-embed-font='fonts/*.ttf' --template=../template/eisvogel/eisvogel.latex --listings --bibliography all.bib -o $(FILENAME).pdf metadata.txt $(INDEX)
 	echo "open $(FILENAME)-papers.epub"

@@ -16,11 +16,8 @@ Keywords: Cloud, Example
 
 ---
 
-## Abstract
-
-TBD
-
-## Introduction
+Please introdcue the topic here in contarst to a report, you do not
+need a section introduction.
 
 One possible way of structuring the document.
 We may have to tweak this example as we progress.
@@ -36,7 +33,7 @@ In [@vonLaszwski-fa18-sample-report] we can find a sample report.
 Naturally the headings are just suggestions and you may change them as
 appropriate for your project.
 
-## Requirements
+## Example
 
 All images must be referred to in the text. The words bellow and above
 must not be used in your paper for images, tables, and code.
@@ -58,19 +55,8 @@ for your drawings.
 ![A simple flow chart](images/from-one-to-the-other.png){#fig:fromonetotheorther}
 ```
 
-## Design 
-
-## Architecture
-
-## Dataset
-
-## Implementation
-
-## Benchmark
-
-## Conclusion
-
-## Acknowledgement
+Intriduce sections as needed. If you write a very long text over
+multiple pages consided introducing sections and subsections.
 
 ## Workbreakdown
 
