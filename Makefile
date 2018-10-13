@@ -65,7 +65,7 @@ papers:
 	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME)-papers.epub ../metadata.txt all.md
 	cp dest/$(FILENAME)-papers.epub . 
 #	cd dest; pandoc $(RESOURCE) --number-sections -V secnumdepth:5 --pdf-engine=xelatex -f markdown+smart --toc --epub-embed-font='fonts/*.ttf' --template=../template/eisvogel/eisvogel.latex --listings --bibliography all.bib -o $(FILENAME).pdf metadata.txt $(INDEX)
-
+	echo "open $(FILENAME)-papers.epub"
 
 push:
 	-for i in $(DIRS); do \
@@ -110,7 +110,9 @@ biblog:
 #	done ;
 
 clean:
-	rm -rf dest bib
+	rm -rf dest bib *.log
+	find . -type f -name "*.blg" -exec rm -f {} \;
+	find . -type f -name "*.bbl" -exec rm -f {} \;
 
-real-clean:
+real-clean: clean
 	rm -rf fa18*
