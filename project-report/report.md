@@ -1,14 +1,13 @@
-# Sample Paper :hand: fa18-523-000, fa18-523-001
+# Sample Paper
 
 | Gregor von Laszewski, Albert Zweistein
 | laszewski@gmail.com, zwei@example.edu
 | Indinana University, Example University
 | hid: fa18-523-000, fa18-523-001
-| link: [:cloud:](https://github.com/cloudmesh-community/proceedings-fa18/blob/master/project-paper/report.md)
 
 ---
 
-| *Keywords:* Cloud, Example
+Keywords: Cloud, Example
 
 ---
 
@@ -27,9 +26,15 @@ Place images in an images directory
 
 Use empty lines before and after headings
 
-This is a sample citation [@vonLaszwski-fa18-sample-report].
+In [@vonLaszwski-fa18-sample-report] we can find a smaple report.
 
 ## Requirements
+
+All images must be referd to in the text. The words bellow and above must not be used in your paper for images, tables, and code.
+
+Figure +@fig:fromonetotheorther shows a nice figuere exported from Powerpoint to png. If you like you can use this as a basis for your drawings
+
+![A simple flow chart](images/from-one-to-the-other.png)
 
 ## Design 
 

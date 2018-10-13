@@ -1,6 +1,6 @@
 FILENAME=vonLaszewski-proceedings-fa18
 INDEX=all.md
-IMAGE_DIRS=$(shell ../book/bin/find-image-dirs.py)
+IMAGE_DIRS=$(shell ./bin/find-image-dirs.py)
 
 DIRS_523=fa18-523-51 fa18-523-52 fa18-523-53 fa18-523-54 fa18-523-56 fa18-523-57 fa18-523-58 fa18-523-59 fa18-523-60 fa18-523-61 fa18-523-62 fa18-523-63 fa18-523-64 fa18-523-65 fa18-523-66 fa18-523-67 fa18-523-69 fa18-523-71 fa18-523-72 fa18-523-79 fa18-523-68 fa18-523-70 fa18-523-80 fa18-523-81 fa18-523-82 fa18-523-83 fa18-523-84 fa18-523-85 fa18-523-86 fa18-523-73 fa18-523-74 fa18-423-01 fa18-423-02 fa18-423-03 fa18-423-04 fa18-423-05 fa18-423-06 fa18-423-08
 
@@ -42,6 +42,7 @@ projects: bib
 		echo "\n" >> dest/projects.md ; \
 	done ;
 	cd dest; iconv -t utf-8 projects.md > all.md
+	cd dest; echo "# Refernces\n\n" >> all.md
 	cp -r template dest
 	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME).epub ../metadata.txt all.md
 	cp dest/$(FILENAME).epub . 
