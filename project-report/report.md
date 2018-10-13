@@ -31,9 +31,11 @@ In [@vonLaszwski-fa18-sample-report] we can find a smaple report.
 
 ## Requirements
 
-All images must be referd to in the text. The words bellow and above must not be used in your paper for images, tables, and code.
+All images must be referd to in the text. The words bellow and above
+must not be used in your paper for images, tables, and code.
 
-+@fig:fromonetotheorther shows a nice figure exported from Powerpoint to png. If you like you can use this as a basis for your drawings
++@fig:fromonetotheorther shows a nice figure exported from Powerpoint
+to png. If you like you can use this as a basis for your drawings
 
 ![A simple flow chart](images/from-one-to-the-other.png){#fig:fromonetotheorther}
 
