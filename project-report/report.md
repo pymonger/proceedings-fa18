@@ -27,6 +27,8 @@ Place images in an images directory
 
 Use empty lines before and after headings
 
+This is a sample citation [@vonLaszwski-fa18-sample-report].
+
 ## Requirements
 
 ## Design 
