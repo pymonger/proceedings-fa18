@@ -13,5 +13,5 @@ fignos-plus-name: Figure
 xnos-number-sections: True
 keywords: [cloud, container]
 abstract: |
-  This book contains the lecture notes for e516
+  This book contains the project reports
 ...
