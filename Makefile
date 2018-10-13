@@ -35,6 +35,7 @@ RESOURCE=--resource-path=$(IMAGE_DIRS)
 projects: bib
 	mkdir -p dest
 	echo > dest/projects.md
+	cat project-paper/report.md >> dest/projects.md
 	for i in $(DIRS); do \
 		cat $$i/project-paper/report.md >> dest/projects.md ; \
 		cat $$i/project-report/report.md >> dest/projects.md ; \

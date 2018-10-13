@@ -1,9 +1,9 @@
 # Sample Paper
 
-> Gregor von Laszewski, Albert Zweistein<br>
-> laszewski@gmail.com, zwei@example.edu<br>
-> Indinana University, Example University<br>
-> hid: fa18-523-000, fa18-523-001<br>
+| Gregor von Laszewski, Albert Zweistein
+| laszewski@gmail.com, zwei@example.edu
+| Indinana University, Example University
+| hid: fa18-523-000, fa18-523-001
 
 > Keywords: Cloud, Example
 
