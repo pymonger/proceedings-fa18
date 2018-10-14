@@ -24,6 +24,8 @@ Do the following
 
 The proceedings will be in a file called
 
+    vonLaszewski-proceedings-fa18-papers.epub
+
 Project Proceedings
 -------------------
 
@@ -33,6 +35,8 @@ Do the following
     $ make papers
 
 The proceedings will be in a file called
+
+    vonLaszewski-proceedings-fa18-projects.epub
 
 Create both proceedings
 -----------------------

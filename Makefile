@@ -24,13 +24,20 @@ PROJECT_VOL10:
 
 PAPER_VOL10: fa18-516-04/section/vs-code.md
 
+help:
+	@cat README.md
+
+
 $(DIRS):
 	[ -e $@ ] ||	git clone git@github.com:cloudmesh-community/$@.git 
 	cd $@; git pull
 
+pull:
+	-for i in $(DIRS); do \
+		echo $$i; cd $$i ; git pull; cd .. ; \
+	done ;
 
-help:
-	@cat README.md
+update: $(DIRS)
 
 list:
 	python list.py  > list.md
