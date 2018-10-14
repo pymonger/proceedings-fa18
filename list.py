@@ -5,6 +5,8 @@ import os
 
 files = glob.glob("fa18*/README.yml")
 
+ERROR=":o:"
+
 #pprint (files)
 readmes = {}
 for readme in files:
@@ -30,20 +32,20 @@ def print_community(community):
     print ("| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |")
     for hid in readmes:
         entry = {
-            "semester": "ERROR",
-            "readme": "ERROR",
-            "hid": "ERROR",
-            "firstname": "ERROR",
-            "lastname": "ERROR",
-            "community": "ERROR",
-            "t1": "ERROR",
-            "t2": "ERROR",
-            "t3": "ERROR",
-            "t4": "ERROR",
+            "semester": ERROR,
+            "readme": ERROR,
+            "hid": ERROR,
+            "firstname": ERROR,
+            "lastname": ERROR,
+            "community": ERROR,
+            "t1": ERROR,
+            "t2": ERROR,
+            "t3": ERROR,
+            "t4": ERROR,
             "t5": "N/A",
             "t6": "N/A",
-            "paper": "ERROR",
-            "project": "ERROR",
+            "paper": ERROR,
+            "project": ERROR,
             "projectkey": "project",
             "paperkey": "paper",                                
             }
