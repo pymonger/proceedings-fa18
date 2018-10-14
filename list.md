@@ -1,4 +1,4 @@
-<font size="-2">
+
 
 | n | semester | hid | lastname | firstname | community | t1 | t2 | t3 | t4 | t5 | t6 | paper | project |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -56,4 +56,4 @@
 | 52 | ERROR | [fa18-523-71](https://github.com/cloudmesh-community/fa18-523-71/blob/master/README.yml) | Kota | Uma Bhargavi | i523 | [t1](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/lxd.md) | [t2](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/openvz.md) | [t3](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/google-fusion-tables.md) | [t4](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/harp.md) | N/A | N/A | [paper](TBD) | [project](TBD) |
 | 53 | ERROR | [fa18-523-85](https://github.com/cloudmesh-community/fa18-523-85/blob/master/README.yml) | Li | Bo | e534 | [t1](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/blaze.md) | [t2](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/daal-intel.md) | [t3](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/osgi.md) | [t4](https://github.com/cloudmesh/technologies/blob/master/chapters/tech/lxc.md) | N/A | N/A | [Consumer](https://github.com/cloudmesh-community/fa18-523-85/blob/master/paper/) | [Consumer Tensorflow](https://github.com/cloudmesh-community/fa18-523-85/tree/master/project-report) |
 
-</font>
+
