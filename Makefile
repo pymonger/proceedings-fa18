@@ -41,6 +41,8 @@ update: $(DIRS)
 
 list:
 	python list.py  > list.md
+	pandoc list.md -o list.html
+
 
 all: $(DIRS) bib-projets projects bib-papers papers
 
