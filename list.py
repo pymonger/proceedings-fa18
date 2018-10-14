@@ -117,6 +117,6 @@ def print_community(community):
         entry["counter"] = counter
         counter = counter + 1
 
-        print ("{counter} | {semester} | {readme} | {lastname} | {firstname} | {community} | {t1} | {t2} | {t3} | {t4} | {t5} | {t6} | {paper} | {project} |".format(**entry))
+        print ("| {counter} | {semester} | {readme} | {lastname} | {firstname} | {community} | {t1} | {t2} | {t3} | {t4} | {t5} | {t6} | {paper} | {project} |".format(**entry))
 
 print_community("523")
