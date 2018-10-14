@@ -27,7 +27,7 @@ counter = 1
 def print_community(community):
     global counter
     print ("| n | semester | hid | lastname | firstname | community | t1 | t2 | t3 | t4 | t5 | t6 | paper | project |")
-    print ("| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---| --- | --- |")
+    print ("| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |")
     for hid in readmes:
         entry = {
             "semester": "ERROR",
