@@ -29,10 +29,13 @@ $(DIRS):
 	cd $@; git pull
 
 
+help:
+	@cat README.md
 
 list:
 	python list.py  > list.md
 
+all: $(DIRS) bib-projets projects bib-papers papers
 
 projects: 
 	mkdir -p dest
