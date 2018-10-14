@@ -41,7 +41,7 @@ update: $(DIRS)
 
 list:
 	python list.py  > list.md
-	pandoc list.md -o list.html
+	pandoc list.md -o list.html --css=template/table.css
 
 
 all: $(DIRS) bib-projets projects bib-papers papers
