@@ -7,6 +7,12 @@ files = glob.glob("fa18*/README.yml")
 
 ERROR=":o:"
 
+def read_technology(url):
+    filename = url.replace("https://github.com/cloudmesh/technologies/blob/master", "../../cloudmesh/technologies")
+    with open(filename, "r") as f:
+       content = f.read()
+    return content
+    
 #pprint (files)
 readmes = {}
 for readme in files:
@@ -72,8 +78,18 @@ def print_community(community):
                 for t in ["t1", "t2", "t3", "t4", "t5", "t6"]:
                     c = c + 1
                     try:
+                        status = "?"
                         url = s["technologies"][c]["url"]
-                        entry[t] = "[{t}]({url})".format(t=t,url=url)
+                        content = read_technology(url)
+                        if ":smiley:" in content:
+                            status = "+"
+                        elif ":hand:" in content:
+                            status = "-"
+                        elif ":wave:" in content:
+                            status = "w"
+                        
+                        entry[t] = "{status}[{t}]({url})".format(t=t,url=url, status=status)
+                            
                     except Exception as e:
                         pass
 
