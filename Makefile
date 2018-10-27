@@ -33,6 +33,11 @@ $(DIRS):
 	cd $@; git pull
 
 
+fix:
+	-for i in $(DIRS); do \
+		echo "\n-------------\n"$$i"\n-------------\n"; cd $$i ; git commit -m "update" . ; git push ; cd .. ; \
+	done ;
+
 status:
 	-for i in $(DIRS); do \
 		echo "\n-------------\n"$$i"\n-------------\n"; cd $$i ; git status; cd .. ; \
@@ -129,6 +134,7 @@ clean:
 	rm -rf dest bib *.log
 	find . -type f -name "*.blg" -exec rm -f {} \;
 	find . -type f -name "*.bbl" -exec rm -f {} \;
+	find . -type f -name "*_bibertool.bib" -exec rm -f {} \;
 
 real-clean: clean
 	rm -rf fa18*
