@@ -32,6 +32,12 @@ $(DIRS):
 	[ -e $@ ] ||	git clone git@github.com:cloudmesh-community/$@.git 
 	cd $@; git pull
 
+
+status:
+	-for i in $(DIRS); do \
+		echo "\n-------------\n"$$i"\n-------------\n"; cd $$i ; git status; cd .. ; \
+	done ;
+
 pull:
 	-for i in $(DIRS); do \
 		echo $$i; cd $$i ; git pull; cd .. ; \
@@ -89,27 +95,28 @@ push:
 bib-projects:
 	mkdir -p bib
 	rm -f */*.blg
+	rm -f biber.log
+	echo > dest/all.bib
 	cp project-report/*.bib bib
 	-for i in $(DIRS); do \
-		biber -q --tool -V $$i/report.bib >> biber.log ; \
-		biber -q --tool -V $$i/refernces.bib >> biber.log ; \
-		cp $$i/project-paper/references.bib bib/refernces-$$i.bib ; \
-		cp $$i/project-paper/report.bib bib/report-$$i.bib ; \
+		if [ -e $$i/project-report/report.bib ] ; then \
+			cp $$i/project-report/report.bib bib/report-$$i.bib; \
+			biber -q --tool -V bib/report-$$i.bib >> biber.log ; \
+			cat bib/report-$$i.bib >> dest/all.bib; \
+		fi ; \
 	done ;
 	mkdir -p dest
-	cat bib/*.bib > dest/all.bib
 	rm -f */*.blg
 
 bib-papers:
 	mkdir -p bib
-	cp project-report/*.bib bib
 	echo > bibr.log
 	-for i in $(DIRS); do \
 		biber -q --tool -V $$i/paper/paper.bib >> biber.log ; \
-		cp $$i/paper/paper.bib bib/refernces-$$i.bib ; \
+		cp $$i/paper/paper.bib bib/paper-$$i.bib ; \
 	done ;
 	mkdir -p dest
-	cat bib/*.bib > dest/all.bib
+	cat bib/paper*.bib > dest/all.bib
 
 biblog:
 	cat biber.log | fgrep "does not parse correctly"
@@ -117,9 +124,6 @@ biblog:
 #	cat biber.log | fgrep -v INFO | fgrep -v "Cannot find"
 
 
-
-#cp $($$i)/papers/refernces.bib 	cp refernces-$$(i).bib ; \
-#	done ;
 
 clean:
 	rm -rf dest bib *.log
