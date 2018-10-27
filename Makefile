@@ -9,13 +9,17 @@ FONTS=--epub-embed-font='fonts/*.ttf'
 RESOURCE=--resource-path=$(IMAGE_DIRS)
 CSL=--csl=template/ieee-with-url.csl
 
-DIRS_523=fa18-523-51 fa18-523-52 fa18-523-53 fa18-523-54 fa18-523-56 fa18-523-57 fa18-523-58 fa18-523-59 fa18-523-60 fa18-523-61 fa18-523-62 fa18-523-63 fa18-523-64 fa18-523-65 fa18-523-66 fa18-523-67 fa18-523-69 fa18-523-71 fa18-523-72 fa18-523-79 fa18-523-68 fa18-523-70 fa18-523-80 fa18-523-81 fa18-523-82 fa18-523-83 fa18-523-84 fa18-523-85 fa18-523-86 fa18-523-73 fa18-523-74 fa18-423-01 fa18-423-02 fa18-423-03 fa18-423-04 fa18-423-05 fa18-423-06 fa18-423-08
+DIRS_523=fa18-523-51 fa18-523-52 fa18-523-53 fa18-523-54 fa18-523-56 fa18-523-57 fa18-523-58 fa18-523-59 fa18-523-60 fa18-523-61 fa18-523-62 fa18-523-63 fa18-523-64 fa18-523-65 fa18-523-66 fa18-523-67 fa18-523-69 fa18-523-71 fa18-523-72 fa18-523-79 fa18-523-68 fa18-523-70 fa18-523-80 fa18-523-81 fa18-523-82 fa18-523-83 fa18-523-84 fa18-523-85 fa18-523-86 fa18-523-73 fa18-523-74
 
 DIRS_516=fa18-516-26 fa18-516-02 fa18-516-03 fa18-516-11 fa18-516-04 fa18-516-06 fa18-516-08 fa18-516-10 fa18-516-12 fa18-516-14 fa18-516-17 fa18-516-18 fa18-516-19 fa18-516-21 fa18-516-22 fa18-516-29 fa18-516-31  fa18-516-24 
 
+DIRS-423=fa18-423-01 fa18-423-02 fa18-423-03 fa18-423-04 fa18-423-05 fa18-423-06 fa18-423-08
+
 BROKEN=fal18-516-23 fal18-516-25
 
-DIRS=$(DIRS_516) $(DIRS_523) 
+DIRS=$(DIRS_516) $(DIRS_523) $(DIRS_423) 
+
+DIRS_PAPERS=$(DIRS_516) $(DIRS_523)
 
 .PHONY: $(DIRS) all bib dest
 all: $(DIRS)
@@ -74,21 +78,22 @@ projects:
 #	cd dest; pandoc $(RESOURCE) --number-sections -V secnumdepth:5 --pdf-engine=xelatex -f markdown+smart --toc --epub-embed-font='fonts/*.ttf' --template=../template/eisvogel/eisvogel.latex --listings --bibliography all.bib -o $(FILENAME).pdf metadata.txt $(INDEX)
 	echo "open $(FILENAME)-projects.epub"
 
-papers: 
+papers:
 	mkdir -p dest
-	echo > dest/papers.md
-	cat paper/paper.md >> dest/papers.md
-	for i in $(DIRS); do \
-		cat $$i/paper/paper.md >> dest/papers.md ; \
-		echo "\n" >> dest/papers.md ; \
+	echo > dest/projects.md
+	cat paper/paper.md >> dest/paper.md
+	for i in $(DIRS_PAPERS); do \
+		cat $$i/paper/paper.md >> dest/paper.md ; \
+		echo "\n" >> dest/paper.md ; \
 	done ;
-	cd dest; iconv -t utf-8 papers.md > all.md
+	cd dest; iconv -t utf-8 paper.md > all.md
 	cd dest; echo "# Refernces\n\n" >> all.md
 	cp -r template dest
 	cd dest; pandoc $(RESOURCE) $(MARKDOWN-OPTIONS)  $(FORMAT) $(FONTS) $(BIB)  $(CSL) $(CSS) -o $(FILENAME)-papers.epub ../metadata-papers.txt all.md
 	cp dest/$(FILENAME)-papers.epub . 
 #	cd dest; pandoc $(RESOURCE) --number-sections -V secnumdepth:5 --pdf-engine=xelatex -f markdown+smart --toc --epub-embed-font='fonts/*.ttf' --template=../template/eisvogel/eisvogel.latex --listings --bibliography all.bib -o $(FILENAME).pdf metadata.txt $(INDEX)
 	echo "open $(FILENAME)-papers.epub"
+
 
 push:
 	-for i in $(DIRS); do \
@@ -98,6 +103,7 @@ push:
 
 
 bib-projects:
+	mkdir -p dest
 	mkdir -p bib
 	rm -f */*.blg
 	rm -f biber.log
@@ -110,18 +116,25 @@ bib-projects:
 			cat bib/report-$$i.bib >> dest/all.bib; \
 		fi ; \
 	done ;
-	mkdir -p dest
 	rm -f */*.blg
 
 bib-papers:
-	mkdir -p bib
-	echo > bibr.log
-	-for i in $(DIRS); do \
-		biber -q --tool -V $$i/paper/paper.bib >> biber.log ; \
-		cp $$i/paper/paper.bib bib/paper-$$i.bib ; \
-	done ;
 	mkdir -p dest
-	cat bib/paper*.bib > dest/all.bib
+	mkdir -p bib
+	rm -f */*.blg
+	rm -f biber.log
+	echo > dest/all.bib
+	mkdir -p dest/images
+	cp */paper/images/* dest/images
+	#cp papers/*.bib bib
+	-for i in $(DIRS_PAPERS); do \
+		if [ -e $$i/paper/paper.bib ] ; then \
+			cp $$i/paper/paper.bib bib/paper-$$i.bib; \
+			biber -q --tool -V bib/papr-$$i.bib >> biber.log ; \
+			cat bib/report-$$i.bib >> dest/all.bib; \
+		fi ; \
+	done ;
+	rm -f */*.blg
 
 biblog:
 	cat biber.log | fgrep "does not parse correctly"
